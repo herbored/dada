@@ -1,0 +1,28 @@
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        int h = 0, m = 0;
+        int n = int.Parse(Console.ReadLine());
+        m += 5;
+        if(m - (h * 5) >= 5) {
+            h++;
+            m += 5;
+        }
+        for(int i = 1; i < n; i++)
+        {
+          h++;
+          m += 5;
+        }
+        while(m >= 60)
+        {
+          m -= 60;
+          h++;
+        }
+        while(h >= 12)
+        {
+          h -= 12;
+        }
+        Console.WriteLine(h + ":" + m);
+    }
+}
