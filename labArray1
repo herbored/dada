@@ -1,0 +1,12 @@
+using System;
+
+class Program {
+    static void Main(string[] args) { 
+    string str = Console.ReadLine();
+    char[] arr;
+    arr = str.ToCharArray();
+    Console.WriteLine("Отображаем текст вертикально:");
+    foreach (char c in arr)
+        Console.WriteLine(c);
+    }
+}
