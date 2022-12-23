@@ -1,0 +1,36 @@
+using System;
+
+class Program {
+    class Nas {
+      public int x;
+      public int y;
+      public int z;
+
+      public Nas(int k1, int k2, int k3)
+      {
+        x = k1;
+        y = k2;
+        z = k3;
+      }
+
+      public void Distance(Nas payk)
+      {
+        Console.WriteLine("Расстояние между мухой и пауком: " + (Math.Round(Math.Abs(Math.Sqrt(Math.Pow((payk.x - x), 2) + Math.Pow((payk.y - y), 2) + Math.Pow((payk.z - z), 2))), 5)));
+      }
+
+      public void Way(Nas myxa)
+      {
+        Console.WriteLine("Путь, который необходимо пройти пауку до мухи: " + (Math.Round(Math.Abs(Math.Sqrt(Math.Pow((myxa.x - x), 2) + Math.Pow((myxa.y - y), 2))), 5) + z));
+      }
+    };
+  
+    static void Main(string[] args) {
+      Nas myxa = new Nas(3, 7, 0);
+      if(myxa.z != 0) {
+        Console.WriteLine("Ошибка");
+      }
+      Nas payk = new Nas(12, 3, 6);
+      myxa.Distance(payk);
+      payk.Way(myxa);
+    }
+}
