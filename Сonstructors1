@@ -1,0 +1,33 @@
+using System;
+
+class Program {
+    class Worker{
+      public string name;
+      public string surname;
+      public int rate;
+      public int days;
+
+      public Worker(string n, string s, int r, int d)
+      {
+        name = n;
+        surname = s;
+        rate = r;
+        days = d;
+      }
+      
+      public void GetFullName()
+      {
+        Console.WriteLine(surname + " " + name + " получил " + GetSalary() + " рублей");
+      }
+
+      public int GetSalary()
+      {
+        return rate*days;
+      }
+    };
+  
+    static void Main(string[] args) {
+      Worker work = new Worker("Олег", "Петров", 2500, 15);
+      work.GetFullName();
+    }
+}
