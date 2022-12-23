@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+
+class Program {
+    static List<int> GetList_int(int n)
+    {
+      Random random = new Random();
+      var list = new List<int>();
+      for(int i = 0; i < n; i++)
+      {
+        list.Add(random.Next(0, 100));
+      }
+      return list;
+    }
+
+    static List<double> GetList_double(int n)
+    {
+      Random random = new Random();
+      var list = new List<double>();
+      for(int i = 0; i < n; i++)
+      {
+        list.Add(random.NextDouble()*100);
+      }
+      return list;
+    }
+  
+    static void Main(string[] args) {
+      int n = 5;
+      Random random = new Random();
+      int type_list = random.Next(0, 2);
+      switch(type_list) {
+      case 0:
+        var list_int = new List<int>();
+        list_int = GetList_int(n);
+        for(int i = 0; i < n; i++)
+        {
+          Console.Write(list_int[i] + " ");
+        }
+        Console.WriteLine();
+        break;
+      case 1:
+        var list_double = new List<double>();
+        list_double = GetList_double(n);
+        for(int i = 0; i < n; i++)
+        {
+          Console.Write(list_double[i] + " ");
+        }
+        Console.WriteLine();
+        break;
+      default:
+        Console.WriteLine("Ошибка");
+        break;
+      }
+    }
+}
