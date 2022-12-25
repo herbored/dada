@@ -1,0 +1,97 @@
+using System;
+
+class Program {
+    class Money {
+      private int pyb;
+      private string spyb;
+      private int kop;
+      private string skop;
+
+      public Money(string i, string s) {
+        if(int.Parse(i) < 0) {
+          Console.WriteLine("Не может быть отрицательным!");
+          return;
+        }
+        else if(s == "р.") {
+          pyb = int.Parse(i);
+          spyb = s;
+          kop = 0;
+          skop = "коп.";
+        }
+        else if(s == "коп.") {
+          pyb = 0;
+          spyb = "р.";
+          kop = int.Parse(i);
+          skop = s;
+          ValueKop();
+        }
+        else {
+          Console.WriteLine("Ошибка");
+        }
+      }
+
+      public Money(string p, string sp, string k, string sk) {
+        if(int.Parse(p) < 0 || int.Parse(k) < 0) {
+          Console.WriteLine("Не может быть отрицательным!");
+          return;
+      }
+      else if(sp == "коп." && sk == "р.") {
+          Console.WriteLine("Рубли и копейки перепутаны местами!");
+          pyb = int.Parse(k);
+          spyb = sk;
+          kop = int.Parse(p);
+          skop = sp;
+        }
+  else if(sp == "р." && sk == "коп.") {
+          pyb = int.Parse(p);
+          spyb = sp;
+          kop = int.Parse(k);
+          skop = sk;
+        }
+        ValueKop();
+      }
+
+      public void ValueKop() {
+        while(kop >= 100) {
+          pyb++;
+          kop -= 100;
+        }
+      }
+
+      public void Sum(Money a, Money b) {
+        pyb = a.pyb + b.pyb;
+        kop = a.kop + b.kop;
+        ValueKop();
+      }
+
+      public void Difference(Money a, Money b) {
+        pyb = Math.Abs(a.pyb - b.pyb);
+        kop = Math.Abs(a.kop - b.kop);
+        ValueKop();
+      }
+      
+      public void Print() {
+        if(pyb == 0) Console.WriteLine(kop + " " + skop);
+        else Console.WriteLine(pyb + " " + spyb + " " + kop + " " + skop);
+      }
+
+      public void PrintTransferCost(double n) {
+        Money total = new Money(Convert.ToString(pyb), spyb, Convert.ToString(kop), skop);
+        double kom = (total.pyb * 100 + total.kop)*n;  
+        total.kop = (int)(total.kop + kom);
+        total.ValueKop();
+        total.Print();
+      }
+    };
+    static void Main(string[] args) {
+        var money1 = new Money("5", "р.", "12", "коп.");
+        var money2 = new Money("2", "р.", "10", "коп.");
+        var money3 = new Money("0", "коп.");
+        var money4 = new Money("0", "коп.");
+        money3.Sum(money1, money2);
+        money3.Print();
+        money4.Difference(money1, money2);
+        money4.Print();
+        money4.PrintTransferCost(0.05);
+    }
+}
