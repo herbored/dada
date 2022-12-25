@@ -1,0 +1,24 @@
+using System;
+
+class Program {
+    class Watch {
+      private string name;
+      private string type;
+      private decimal price;
+
+      public Watch(string n, string t, decimal p) {
+        name = n;
+        type = t;
+        price = p;
+      }
+
+      public void Print()
+      {
+        Console.WriteLine(name + " " + type + " " + price);
+      }
+    }
+    static void Main(string[] args) {
+        var myWatch = new Watch("Casio", "electronic", 15.99M);
+    myWatch.Print();
+    }
+}
